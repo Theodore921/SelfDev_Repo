@@ -112,7 +112,7 @@ Shader "Unlit/Water"
                 float3 ambient = col * UNITY_LIGHTMODEL_AMBIENT.xyz;
 
                 
-                return float4(diffuse, col.a);
+                return float4(diffuse + specular + ambient, col.a);
             }
             ENDCG
         }

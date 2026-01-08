@@ -31,6 +31,15 @@ public class Script_ClusterBasedLighting : MonoBehaviour
 
     private CD_DIM m_DimData;
 
+    /// Tentatively created for no references /// 
+    private RenderTexture _rtColor;
+    private RenderTexture _rtDepth;
+    private Camera _camera;
+    private GraphicsBuffer AABB;
+    private float m_ClusterGridBlockSize;
+    /// Tentative creation ends ///
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +47,8 @@ public class Script_ClusterBasedLighting : MonoBehaviour
         _rtDepth = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.Depth, RenderTextureReadWrite.Linear);
 
         CalculateMDim(_camera);
-        int stride = Marshal.SizeOf(typeof(AABB));
+        // int stride = Marshal.SizeOf(Type(AABB)); //Original Code here but keeping throwing error
+        int stride = Marshal.SizeOf(AABB);
         cb_ClusterAABBs = new ComputeBuffer(m_DimData.clusterDimXYZ, stride);
     }
 
